@@ -32,7 +32,19 @@ class RoutingTests extends TestCase
         $this->assertSame('callable', $routeInfo->handler());
         $this->assertInternalType('array', $routeInfo->vars());
         $this->assertSame(['id' => '1'], $routeInfo->vars());
-        var_dump($routeInfo->vars());
     }
     
+    public function testFilterUriMethod()
+    {
+        $router = new Router;
+        $router->get('/user/{id}', 'callable');
+        
+        $request = new ServerRequest([], [], '/user/1?wee=true', 'GET');
+        $routeInfo = $router->run($request);
+        
+        $this->assertInstanceOf(ServerRequestInterface::class, $request);
+        $this->assertSame('callable', $routeInfo->handler());
+        $this->assertInternalType('array', $routeInfo->vars());
+        $this->assertSame(['id' => '1'], $routeInfo->vars());
+    }
 }

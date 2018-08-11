@@ -88,4 +88,12 @@ class RouterTests extends TestCase
         $this->assertEquals($routes[0]['method'], 'DELETE');
         $this->assertEquals($routes[0]['callable'], 'callable');
     }
+    
+    public function testRouteInfoMethod()
+    {
+        $router = new Router;
+        $router->delete('/', 'callable');
+        $routeInfo = $router->routeInfo();
+        $this->assertInternalType('array', $routeInfo);
+    }
 }
