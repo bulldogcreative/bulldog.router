@@ -32,6 +32,7 @@ class RoutingTests extends TestCase
         $this->assertSame('callable', $routeInfo->handler());
         $this->assertInternalType('array', $routeInfo->vars());
         $this->assertSame(['id' => '1'], $routeInfo->vars());
+        var_dump($routeInfo->vars());
     }
     
 }
